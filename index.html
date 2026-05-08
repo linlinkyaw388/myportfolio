@@ -22,12 +22,11 @@
             }
 
             /* start sitebar area */
-            /* Sidebar ကို Fixed လုပ်ထားမယ် */
             .navbars {
                 width: 150px;
                 height: 100vh;
-                background-color: #333; /* အရောင်လေး နည်းနည်း ပြောင်းထားတယ် */
-                position: fixed; /* ဘယ်ဘက်မှာ အမြဲကပ်နေအောင် */
+                background-color: #333;
+                position: fixed; 
                 left: 0;
                 top: 0;
                 z-index: 100;
@@ -43,9 +42,7 @@
             .navbar-navitem a:hover {
                 background-color: #555;
             }
-
             
-            /* Content ကို Sidebar width အတိုင်း Margin ပေးပြီး တွန်းထုတ်မယ် */
             .contents,.abouts ,.techcicals ,.livelinks ,.contacts ,.cv ,.footers{
                 margin-left: 150px; 
                 padding: 20px;
@@ -64,8 +61,6 @@
             }                     
             /* end Technical skills area */
 
-            /* --- Mobile Responsive ပြင်ဆင်ချက် --- */
-            /* Sidebar Toggle Button ကို Desktop မှာ ဖျောက်ထားမယ် */
             .menu-btn {
                 display: none;
                 position: fixed;
@@ -75,25 +70,18 @@
             }
 
             @media (max-width: 768px) {
-                /* Sidebar ကို Screen အပြင် ထုတ်ထားမယ် */
                 .navbars {
                     left: -150px;
                     transition: 0.3s;
                 }
-
-                /* Sidebar ပေါ်လာတဲ့အခါ (JS နဲ့ class ထည့်မယ်) */
                 .navbars.active {
                     left: 0;
                 }
-
-                /* Mobile မှာ Content margin ကို 0 ပြန်လုပ်မယ် */
                 .contents, .abouts, .techcicals ,.livelinks ,.contacts ,.cv ,.footers{
                     margin-left: 0;
                     width: 100%;
-                    padding-top: 60px; /* Button အတွက် နေရာချန်တာ */
+                    padding-top: 60px;
                 }
-
-                /* Mobile မှာ Menu Button ကို ပြမယ် */
                 .menu-btn {
                     display: block;
                 }
@@ -104,12 +92,6 @@
             
 
             /* start live link area */
-            /* Collapse ပွင့်သွားတဲ့အခါ Icon ကို လှည့်လိုက်တာ */
-            [aria-expanded="true"] .fa-chevron-down {
-                transform: rotate(180deg);
-                transition: 0.3s;
-            }
-
             .card-header {
                 transition: background-color 0.3s;
                 opacity: 1;
@@ -120,9 +102,8 @@
                 opacity: 0.9;
             }
 
-            /* Collapse ပွင့်နေတဲ့အချိန်မှာ မြားကို 90 degree လှည့်ချလိုက်မယ် */
             [aria-expanded="true"] .arrow-icon {
-                transform: rotate(-90deg); /* Left ကနေ Down ကို ရောက်သွားဖို့ */
+                transform: rotate(-90deg);
                 transition: 0.3s;
             }
 
@@ -300,7 +281,6 @@
                 </div>
 
                 <div class="card border-0 shadow-sm mb-3">
-                    <!-- နှိပ်ရမယ့် ခေါင်းစဉ်ပိုင်း -->
                     <div class="card-header bg-secondary" style="cursor: pointer;" data-bs-toggle="collapse" data-bs-target="#projectDetails2">
                         <div class="d-flex justify-content-between align-items-center">
                             <span class="fw-bold"><i class="fas fa-link me-2"></i> Shopping App System</span>
@@ -308,7 +288,6 @@
                         </div>
                     </div>
 
-                    <!-- နှိပ်လိုက်မှ ပေါ်လာမယ့် အပိုင်း -->
                     <div id="projectDetails2" class="collapse">
                         <div class="card-body " style="background-color: #999;">
                             <p class="text-light">
@@ -326,7 +305,6 @@
                 </div>
 
                 <div class="card border-0 shadow-sm mb-3">
-                    <!-- နှိပ်ရမယ့် ခေါင်းစဉ်ပိုင်း -->
                     <div class="card-header bg-secondary" style="cursor: pointer;" data-bs-toggle="collapse" data-bs-target="#projectDetails3">
                         <div class="d-flex justify-content-between align-items-center">
                             <span class="fw-bold"><i class="fas fa-link me-2"></i> Home Decoration Page</span>
@@ -334,7 +312,6 @@
                         </div>
                     </div>
 
-                    <!-- နှိပ်လိုက်မှ ပေါ်လာမယ့် အပိုင်း -->
                     <div id="projectDetails3" class="collapse">
                         <div class="card-body " style="background-color: #999;">
                             <p class="text-light">
@@ -349,7 +326,6 @@
                 </div>
 
                 <div class="card border-0 shadow-sm mb-3">
-                    <!-- နှိပ်ရမယ့် ခေါင်းစဉ်ပိုင်း -->
                     <div class="card-header bg-secondary" style="cursor: pointer;" data-bs-toggle="collapse" data-bs-target="#projectDetails4">
                         <div class="d-flex justify-content-between align-items-center">
                             <span class="fw-bold"><i class="fas fa-link me-2"></i> PTT Software CO.,LTD</span>
@@ -357,7 +333,6 @@
                         </div>
                     </div>
 
-                    <!-- နှိပ်လိုက်မှ ပေါ်လာမယ့် အပိုင်း -->
                     <div id="projectDetails4" class="collapse">
                         <div class="card-body " style="background-color: #999;">
                             <p class="text-light">
@@ -372,7 +347,7 @@
                 </div>
 
                 <div class="card border-0 shadow-sm mb-3">
-                    <!-- နှိပ်ရမယ့် ခေါင်းစဉ်ပိုင်း -->
+
                     <div class="card-header bg-secondary" style="cursor: pointer;" data-bs-toggle="collapse" data-bs-target="#projectDetails5">
                         <div class="d-flex justify-content-between align-items-center">
                             <span class="fw-bold"><i class="fas fa-link me-2"></i> Blog App</span>
@@ -380,7 +355,6 @@
                         </div>
                     </div>
 
-                    <!-- နှိပ်လိုက်မှ ပေါ်လာမယ့် အပိုင်း -->
                     <div id="projectDetails5" class="collapse">
                         <div class="card-body " style="background-color: #999;">
                             <p class="text-light">
@@ -397,7 +371,6 @@
                 </div>
 
                 <div class="card border-0 shadow-sm mb-3">
-                    <!-- နှိပ်ရမယ့် ခေါင်းစဉ်ပိုင်း -->
                     <div class="card-header bg-secondary" style="cursor: pointer;" data-bs-toggle="collapse" data-bs-target="#projectDetails6">
                         <div class="d-flex justify-content-between align-items-center">
                             <span class="fw-bold"><i class="fas fa-link me-2"></i> Boostrap Admin Template</span>
@@ -405,7 +378,6 @@
                         </div>
                     </div>
 
-                    <!-- နှိပ်လိုက်မှ ပေါ်လာမယ့် အပိုင်း -->
                     <div id="projectDetails6" class="collapse">
                         <div class="card-body " style="background-color: #999;">
                             <p class="text-light">
@@ -420,7 +392,6 @@
                 </div>
 
                 <div class="card border-0 shadow-sm mb-3">
-                    <!-- နှိပ်ရမယ့် ခေါင်းစဉ်ပိုင်း -->
                     <div class="card-header bg-secondary" style="cursor: pointer;" data-bs-toggle="collapse" data-bs-target="#projectDetails7">
                         <div class="d-flex justify-content-between align-items-center">
                             <span class="fw-bold"><i class="fas fa-link me-2"></i> Reactjs App</span>
@@ -428,7 +399,6 @@
                         </div>
                     </div>
 
-                    <!-- နှိပ်လိုက်မှ ပေါ်လာမယ့် အပိုင်း -->
                     <div id="projectDetails7" class="collapse">
                         <div class="card-body " style="background-color: #999;">
                             <p class="text-light">
@@ -452,7 +422,6 @@
          <section class="cv mt-3">
             <div class="container-fluid">
                 
-                <!-- CV ကို ကြည့်ရန် သို့မဟုတ် Download ဆွဲရန် ခလုတ် -->
                 <div class="mt-4">
                     <a href="./files/Lin_Lin_kyaw_(Louis)_FlowCV_Resume_2026-05-07.pdf" target="_blank" class="btn btn-outline-dark ms-2">
                         <i class="fas fa-eye me-2"></i> View CV
@@ -519,7 +488,6 @@
 
          
 
-        <!-- bootstrap js (href မဟုတ်ဘဲ src သုံးရပါမယ်) -->
         <script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
 
         <script>
@@ -529,7 +497,6 @@
             menuToggle.addEventListener('click', () => {
                 sidebar.classList.toggle('active');
                 
-                // Button icon ကို ပြောင်းချင်ရင် (optional)
                 const icon = menuToggle.querySelector('i');
                 icon.classList.toggle('fa-bars');
                 icon.classList.toggle('fa-times');
@@ -544,114 +511,3 @@
 
     </body>
 </html>
-
-                                    <!-- <div>
-                                        <ul class="list-unstyled">
-                                            <li><i class="fas fa-map-marker-alt me-1"></i>Yangon,Myanmar</li>
-                                            <li><i class="fas fa-map-marker-alt me-1"></i>linlinkyaw388@gmail.com</li>
-                                            <li><i class="fas fa-map-marker-alt me-1"></i>+959257830194</li>
-                                            <li><i class="fas fa-link me-1"></i>My Github Repository Link : </li>
-                                        </ul>
-                                    </div> -->
-
-                                    <!-- .liststyles ul li{
-                                        background-color: aliceblue;
-                                        display: inline;
-                                        padding: 10px;
-                                        border-radius: 20px 20px;
-
-                                        /* column-count: 2;
-                                        grid-column: 5;
-                                        grid-row: auto;
-                                        column-gap: 5;
-                                        grid-template-columns: 5px; */
-                                        /* flex-direction: column;
-                                        flex-shrink: 2;
-                                        flex-grow: 2 */
-
-                                    } -->
-<!-- 
-                                    .liststyles ul {
-                                        display: grid;          /* Flexbox သုံးမယ် */
-                                        flex-wrap: wrap;        /*အတန်းကျော်ရင် အောက်ဆင်းမယ် */ 
-                                        gap: 10px;              /* အတုံးလေးတွေကြား အကွာအဝေး */
-                                        padding: 0;
-                                        list-style: none;
-
-                                        justify-content: center;
-                                        align-items: center;
-
-                                        grid-template-columns: repeat(5, 1fr);
-                                    }
-
-                                    .liststyles ul li {
-                                        background-color: aliceblue;
-                                        padding: 10px;     /* အချိုးအစားညီအောင် padding ပြင်ထားပါတယ် */
-                                        border-radius: 20px;
-                                        /* flex: 0 0 calc(20% - 10px); တစ်တန်းမှာ ၅ တုံး အတိအကျဖြစ်အောင် တွက်ချက်ခြင်း */
-                                        text-align: center;
-                                        border: 1px solid #d1e3f8; /* ပိုလှအောင် border လေးထည့်ထားပါတယ် */
-                                    } -->
-
-                                                                <!-- .liststyles ul {
-                                            display: grid;
-                                            /* Browser အကြီးမှာ တစ်တန်းကို ၅ ခု */
-                                            grid-template-columns: repeat(5, 150px); /* အတုံးလေးတွေကို width ၁၀၀ လောက်ပဲ ပေးထားမယ် */
-                                            gap: 15px;
-                                            padding: 0;
-                                            list-style: none;
-                                            
-                                            /* ဒီအပိုင်းက အလယ်ကို ပို့ပေးတာပါ */
-                                            justify-content: center; 
-                                            margin: 0 auto;
-                                            max-width: 800px; /* စုစုပေါင်း အကျယ်ကို ကန့်သတ်တာပါ */
-                                        }
-
-                                        .liststyles ul li {
-                                            background-color: aliceblue;
-                                            padding: 15px;
-                                            border-radius: 20px;
-                                            text-align: center;
-                                            border: 1px solid #d1e3f8;
-                                            /* font-size: 13px; */
-                                            /* font-weight: 500; */
-                                            /* စာသားရှည်ရင်လည်း အတုံးထဲမှာပဲ ရှိနေအောင် လုပ်တာပါ */
-                                            display: flex;
-                                            align-items: center;
-                                            justify-content: center;
-                                        }
-
-                                        /* Tablet - တစ်တန်း ၃ ခု */
-                                        @media (max-width: 768px) {
-                                            .liststyles ul {
-                                                grid-template-columns: repeat(3, 100px);
-                                            }
-                                        }
-
-                                        /* Mobile - တစ်တန်း ၂ ခု */
-                                        @media (max-width: 480px) {
-                                            .liststyles ul {
-                                                grid-template-columns: repeat(2, 100px);
-                                            }
-                                        } -->
-
-<!-- 
-                                         <nav class="navbar navbar-expand-lg bg-secondary">
-
-                                            <div class="container-fluid">
-                                                Links -->
-                                                <!-- <ul class="navbar-nav">
-                                                <li class="nav-bar nav-item">
-                                                    <a class="nav-link" href="#">Link 1</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="#">Link 2</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="#">Link 3</a>
-                                                </li>
-                                                </ul>
-                                            </div>
-
-                                        </nav> -->
-<!--  -->
