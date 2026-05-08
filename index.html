@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>My Portfolio</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="./images/myphoto.jpg" sizes="16*16">
+        
+        <!-- bootstrap css -->
+        <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+        <!-- fontawesome css -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@200..900&display=swap');
+
+            body {
+                background-color: #d5d5d5;
+                font-family: "Source Sans 3", sans-serif;
+                padding: 0;
+                margin: 0;
+            }
+
+            /* start sitebar area */
+            /* Sidebar ကို Fixed လုပ်ထားမယ် */
+            .navbars {
+                width: 150px;
+                height: 100vh;
+                background-color: #333; /* အရောင်လေး နည်းနည်း ပြောင်းထားတယ် */
+                position: fixed; /* ဘယ်ဘက်မှာ အမြဲကပ်နေအောင် */
+                left: 0;
+                top: 0;
+                z-index: 100;
+            }
+
+            .navbar-navitem a {
+                color: #fff !important;
+                text-align: center;
+                font-size: 14px;
+                transition: 0.3s;
+            }
+
+            .navbar-navitem a:hover {
+                background-color: #555;
+            }
+
+            
+            /* Content ကို Sidebar width အတိုင်း Margin ပေးပြီး တွန်းထုတ်မယ် */
+            .contents,.abouts ,.techcicals ,.livelinks ,.contacts ,.cv ,.footers{
+                margin-left: 150px; 
+                padding: 20px;
+                width: calc(100% - 150px);
+            }
+
+            /* start Technical skills area */
+            .liststyles ul li{
+                display: inline-block;
+                background-color: #999;
+                padding: 15px;
+                border-radius: 30px;
+                border: 1px solid #d1e3f8; 
+                color: #fff;
+
+            }                     
+            /* end Technical skills area */
+
+            /* --- Mobile Responsive ပြင်ဆင်ချက် --- */
+            /* Sidebar Toggle Button ကို Desktop မှာ ဖျောက်ထားမယ် */
+            .menu-btn {
+                display: none;
+                position: fixed;
+                top: 10px;
+                left: 10px;
+                z-index: 1001;
+            }
+
+            @media (max-width: 768px) {
+                /* Sidebar ကို Screen အပြင် ထုတ်ထားမယ် */
+                .navbars {
+                    left: -150px;
+                    transition: 0.3s;
+                }
+
+                /* Sidebar ပေါ်လာတဲ့အခါ (JS နဲ့ class ထည့်မယ်) */
+                .navbars.active {
+                    left: 0;
+                }
+
+                /* Mobile မှာ Content margin ကို 0 ပြန်လုပ်မယ် */
+                .contents, .abouts, .techcicals ,.livelinks ,.contacts ,.cv ,.footers{
+                    margin-left: 0;
+                    width: 100%;
+                    padding-top: 60px; /* Button အတွက် နေရာချန်တာ */
+                }
+
+                /* Mobile မှာ Menu Button ကို ပြမယ် */
+                .menu-btn {
+                    display: block;
+                }
+            };
+            /* end sitebar area */
+
+
+            
+
+            /* start live link area */
+            /* Collapse ပွင့်သွားတဲ့အခါ Icon ကို လှည့်လိုက်တာ */
+            [aria-expanded="true"] .fa-chevron-down {
+                transform: rotate(180deg);
+                transition: 0.3s;
+            }
+
+            .card-header {
+                transition: background-color 0.3s;
+                opacity: 1;
+            }
+
+            .card-header:hover {
+                /* background-color: #f8f9fa !important; */
+                opacity: 0.9;
+            }
+
+            /* Collapse ပွင့်နေတဲ့အချိန်မှာ မြားကို 90 degree လှည့်ချလိုက်မယ် */
+            [aria-expanded="true"] .arrow-icon {
+                transform: rotate(-90deg); /* Left ကနေ Down ကို ရောက်သွားဖို့ */
+                transition: 0.3s;
+            }
+
+            .arrow-icon {
+                transition: 0.3s;
+                display: inline-block;
+            }
+            /* end live link area */
+
+        </style>
+    </head>
+
+    <body>
+
+        <!-- Mobile အတွက် Menu Button -->
+        <button class="btn btn-dark menu-btn" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+       
+        <!-- start nav bar area -->
+        <nav class="navbars" id="navbars">
+            <div class="navbaritems" style="margin-top: 50px;">
+                <ul class="navbar-nav list-unstyled text-center">
+                    <li class="navbar-navitem"><a href="#infosection" class="nav-link p-3"><i class="fas fa-home fa-lg d-block mb-1"></i>Home</a></li>
+                    <li class="navbar-navitem"><a href="#infosection" class="nav-link p-3"><i class="fas fa-file-alt fa-lg d-block mb-1"></i>Info</a></li>
+                    <li class="navbar-navitem"><a href="#aboutmesection" class="nav-link p-3"><i class="fas fa-user fa-lg d-block mb-1"></i>About me</a></li>
+                    <li class="navbar-navitem"><a href="#skillsection" class="nav-link p-3"><i class="fas fa-code fa-lg d-block mb-1"></i>Skills</a></li>
+                    <li class="navbar-navitem"><a href="#livelinksection" class="nav-link p-3"><i class="fas fa-link fa-lg d-block mb-1"></i>Live Link</a></li>
+                    <li class="navbar-navitem"><a href="#contentsection" class="nav-link p-3"><i class="fas fa-address-book fa-lg d-block mb-1"></i>Content</a></li>
+                </ul>
+            </div>
+        </nav>
+        <!-- end nav bar area -->
+
+        <!-- start info area -->
+        <section class="contents" id="infosection">
+
+            <div class="bg-secondary mb-4" style="width: 100%;height: 30px;"></div>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 mb-3">
+                        
+                                <div class="" style="text-align: center;">
+                                    <img src="./images/myphoto.jpg" style="width: 25%;border-radius: 50%;" alt="myphoto">
+                                    <h4 class="mt-1">Louis George Lin</h4>
+                                    <p class="text-muted mt-1"><i class="fas fa-job"></i>Full Stack Developer</p>
+                                </div>
+                          
+                    </div>
+
+                    <div class="col-lg-6 col-md-12 mb-3">
+                        
+                        <div>
+
+                            <h5>Info</h5>
+                            <hr>
+                            <ul class="list-unstyled mt-4">
+                                <li>NRC Name : Lin Lin Kyaw</li>
+                                <li>DOB : 2002-11-6</li>
+                                <li>Education : Bachelor Degree of Dagon University</li>
+                                <li>Current Work in : Aya Bank (Non Developer)</li>
+                            </ul>
+
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- start info area -->
+
+        <!-- start aboutme info area -->
+         <section class="abouts" id="aboutmesection">
+            <div class="container-fluid">
+                <div>
+                    <h5>About Me</h5>
+                    <hr>
+                    <p>
+                    I am web developer focused on building practical , business-ready web solution ,web application and problem solving. <br>
+                    I have already exists skills with: <br>
+                    •HTML,CSS, JAVASCRIPT, JQUERY, Boostrap , Tailwind Css, <br>
+                    •ES6 , Typescript , Reactsjs , React rounter V7 <br>
+                    •PHP , Laravel (MVC framework)  <br>
+                    •MySql database  <br>
+                    • Version control system (Git & Github) <br>
+                    •Additonal Skills : python <br> <br>
+
+                    Instead of just building website , I focus on creating systems that help business launch , manage , and scale their online presence.
+                    </p>
+                </div>
+            </div>
+
+         </section>
+        <!-- end aboutme info area -->
+
+        <!-- start Technical skills area -->
+         <section class="techcicals" id="skillsection">
+            <div class="container-fluid">
+                <div>
+                    <h5>Technical Skills</h5>
+                    <hr>
+                    <div class="liststyles">
+                        <ul class="list-unstyled">
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>Javascript</li>
+                            <li>JQuery</li>
+                            <li>Boostrap</li>
+                            <li>Tailwind CSS</li>
+                            <li>ES6</li>
+                            <li>Typescript</li>
+                            <li>React.js</li>
+                            <li>React router v7</li>
+                            <li>React Zustand</li>
+                            <li>PHP</li>
+                            <li>Mysql</li>
+                            <li>Python</li>
+                        </ul>
+                    </div>
+
+                    <div class="mt-3">
+                        <div class="">
+                            <h5>Frontend</h5>
+                            <div class="progress" style="max-width: 700px;">
+                                <div class="progress-bar bg-secondary " style="width: 80%;height: 70px;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
+                            </div>
+
+                            <h5 class="mt-3">Framework</h5>
+                            <div class="progress" style="max-width: 700px;">
+                                <div class="progress-bar bg-secondary " style="width: 70%;height: 70px;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>
+                            </div>
+
+                            <h5 class="mt-3">Backend</h5>
+                            <div class="progress" style="max-width: 700px;">
+                                <div class="progress-bar bg-secondary " style="width: 60%;height: 70px;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">60%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+         </section>
+        <!-- end Technical skills area -->
+
+        <!-- start Live link area  -->
+         <section class="livelinks mt-3" id="livelinksection">
+            <div class="container-fluid">
+                <div>
+                <h5>Project Live Link Demo</h5>
+                <hr>
+                
+                <!-- Project Card Start -->
+                <div class="card border-0 shadow-sm mb-3">
+                    <!-- နှိပ်ရမယ့် ခေါင်းစဉ်ပိုင်း -->
+                    <div class="card-header bg-secondary" style="cursor: pointer;" data-bs-toggle="collapse" data-bs-target="#projectDetails1">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="fw-bold"><i class="fab fa-github me-2"></i> My Github Repository Link</span>
+                            <i class="fas fa-chevron-left arrow-icon"></i> <!-- Dropdown Icon -->
+                        </div>
+                    </div>
+
+                    <!-- နှိပ်လိုက်မှ ပေါ်လာမယ့် အပိုင်း -->
+                    <div id="projectDetails1" class="collapse">
+                        <div class="card-body " style="background-color: #999;">
+                            <p class="text-light">
+                                Welcome my Github Page <br>
+                                ကျနော့်၏ lesson course များနှင့် project များကို စုစည်းဖော်ပြထားတဲ့ github account ဖြစ်ပါတယ်ခင်ဗျ။ Link ကိုနှိပ်၍ဝင်ရောက်ကြည့်ရှုနိုင်ပါတယ်ခင်ဗျ။
+                            </p>
+                            <a href="https://github.com/linlinkyaw388" target="_blank" class="btn btn-secondary btn-sm">
+                                Visit Repository <i class="fas fa-external-link-alt ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow-sm mb-3">
+                    <!-- နှိပ်ရမယ့် ခေါင်းစဉ်ပိုင်း -->
+                    <div class="card-header bg-secondary" style="cursor: pointer;" data-bs-toggle="collapse" data-bs-target="#projectDetails2">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="fw-bold"><i class="fas fa-link me-2"></i> Shopping App System</span>
+                            <i class="fas fa-chevron-left arrow-icon" ></i> <!-- Dropdown Icon -->
+                        </div>
+                    </div>
+
+                    <!-- နှိပ်လိုက်မှ ပေါ်လာမယ့် အပိုင်း -->
+                    <div id="projectDetails2" class="collapse">
+                        <div class="card-body " style="background-color: #999;">
+                            <p class="text-light">
+                                ✨ e-commerce shopping app system | <br>
+                                        php , MySQL project <br>
+                                        role based Authentication (Admin panel , user panel ) <br>
+                                        login, logout ,additem ,addtocarditem, shopping with responsibility  <br>
+                                        CRUD in database
+                            </p>
+                            <a href="https://saintcarlos388.infinityfreeapp.com/" target="_blank" class="btn btn-secondary btn-sm">
+                                Visit Demo <i class="fas fa-external-link-alt ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow-sm mb-3">
+                    <!-- နှိပ်ရမယ့် ခေါင်းစဉ်ပိုင်း -->
+                    <div class="card-header bg-secondary" style="cursor: pointer;" data-bs-toggle="collapse" data-bs-target="#projectDetails3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="fw-bold"><i class="fas fa-link me-2"></i> Home Decoration Page</span>
+                            <i class="fas fa-chevron-left arrow-icon" ></i> <!-- Dropdown Icon -->
+                        </div>
+                    </div>
+
+                    <!-- နှိပ်လိုက်မှ ပေါ်လာမယ့် အပိုင်း -->
+                    <div id="projectDetails3" class="collapse">
+                        <div class="card-body " style="background-color: #999;">
+                            <p class="text-light">
+                                HTML , CSS , Javascript , Boostrap project <br>
+                                Tech Stack : HTML , CSS , Javascript , Boostrap , jQuery
+                            </p>
+                            <a href="https://linlinkyaw388.github.io/Boostrap-project/" target="_blank" class="btn btn-secondary btn-sm">
+                                Visit Demo <i class="fas fa-external-link-alt ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow-sm mb-3">
+                    <!-- နှိပ်ရမယ့် ခေါင်းစဉ်ပိုင်း -->
+                    <div class="card-header bg-secondary" style="cursor: pointer;" data-bs-toggle="collapse" data-bs-target="#projectDetails4">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="fw-bold"><i class="fas fa-link me-2"></i> PTT Software CO.,LTD</span>
+                            <i class="fas fa-chevron-left arrow-icon"></i> <!-- Dropdown Icon -->
+                        </div>
+                    </div>
+
+                    <!-- နှိပ်လိုက်မှ ပေါ်လာမယ့် အပိုင်း -->
+                    <div id="projectDetails4" class="collapse">
+                        <div class="card-body " style="background-color: #999;">
+                            <p class="text-light">
+                                Single Page <br>
+                                Tech Stack : HTML , CSS , Javascript , Boostrap , jQuery
+                            </p>
+                            <a href="https://linlinkyaw388.github.io/pttproject/" target="_blank" class="btn btn-secondary btn-sm">
+                                Visit Demo <i class="fas fa-external-link-alt ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow-sm mb-3">
+                    <!-- နှိပ်ရမယ့် ခေါင်းစဉ်ပိုင်း -->
+                    <div class="card-header bg-secondary" style="cursor: pointer;" data-bs-toggle="collapse" data-bs-target="#projectDetails5">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="fw-bold"><i class="fas fa-link me-2"></i> Blog App</span>
+                            <i class="fas fa-chevron-left arrow-icon"></i> <!-- Dropdown Icon -->
+                        </div>
+                    </div>
+
+                    <!-- နှိပ်လိုက်မှ ပေါ်လာမယ့် အပိုင်း -->
+                    <div id="projectDetails5" class="collapse">
+                        <div class="card-body " style="background-color: #999;">
+                            <p class="text-light">
+                                PHP Project <br>
+                                role based Authentication (Admin panel , user panel ) <br>
+                                login, logout ,comment , CRUD system  <br>
+                                Tech Stack : PHP , Mysql database , Boostrap Template
+                            </p>
+                            <a href="https://myblog388.infinityfreeapp.com/" target="_blank" class="btn btn-secondary btn-sm">
+                                Visit Demo <i class="fas fa-external-link-alt ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow-sm mb-3">
+                    <!-- နှိပ်ရမယ့် ခေါင်းစဉ်ပိုင်း -->
+                    <div class="card-header bg-secondary" style="cursor: pointer;" data-bs-toggle="collapse" data-bs-target="#projectDetails6">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="fw-bold"><i class="fas fa-link me-2"></i> Boostrap Admin Template</span>
+                            <i class="fas fa-chevron-left arrow-icon"></i> <!-- Dropdown Icon -->
+                        </div>
+                    </div>
+
+                    <!-- နှိပ်လိုက်မှ ပေါ်လာမယ့် အပိုင်း -->
+                    <div id="projectDetails6" class="collapse">
+                        <div class="card-body " style="background-color: #999;">
+                            <p class="text-light">
+                                Boostrap Project <br>
+                                Tech Stack : HTML , CSS , Javascript , Boostrap , jQuery
+                            </p>
+                            <a href="https://myadmintemplate.infinityfreeapp.com/" target="_blank" class="btn btn-secondary btn-sm">
+                                Visit Demo <i class="fas fa-external-link-alt ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow-sm mb-3">
+                    <!-- နှိပ်ရမယ့် ခေါင်းစဉ်ပိုင်း -->
+                    <div class="card-header bg-secondary" style="cursor: pointer;" data-bs-toggle="collapse" data-bs-target="#projectDetails7">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="fw-bold"><i class="fas fa-link me-2"></i> Reactjs App</span>
+                            <i class="fas fa-chevron-left arrow-icon" ></i> <!-- Dropdown Icon -->
+                        </div>
+                    </div>
+
+                    <!-- နှိပ်လိုက်မှ ပေါ်လာမယ့် အပိုင်း -->
+                    <div id="projectDetails7" class="collapse">
+                        <div class="card-body " style="background-color: #999;">
+                            <p class="text-light">
+                                Note_app <br>
+                                Basic Reactjs , Reactrouter V7 
+                            </p>
+                            <a href="https://react-app-iota-swart.vercel.app/" target="_blank" class="btn btn-secondary btn-sm">
+                                Visit Demo <i class="fas fa-external-link-alt ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project Card End -->
+            </div>
+            </div>
+         </section>
+        <!-- end Live link area  -->
+         <hr>
+
+        <!-- start download cv area -->
+         <section class="cv mt-3">
+            <div class="container-fluid">
+                
+                <!-- CV ကို ကြည့်ရန် သို့မဟုတ် Download ဆွဲရန် ခလုတ် -->
+                <div class="mt-4">
+                    <a href="./files/Lin_Lin_kyaw_(Louis)_FlowCV_Resume_2026-05-07.pdf" target="_blank" class="btn btn-outline-dark ms-2">
+                        <i class="fas fa-eye me-2"></i> View CV
+                    </a>
+
+                    <a href="./files/outline-dark ms-2" download="Lin_Lin_Kyaw_(Louis)_CV.pdf" class="btn btn-outline-dark ms-2">
+                        <i class="fas fa-download me-2"></i> Download CV
+                    </a>
+                </div>
+            </div>
+         </section>
+          <!-- end download cv area -->
+
+        <!-- start content area  -->
+         <section class="contacts mt-3" id="contentsection">
+            <div class="container-fluid">
+                <div>
+                    <h5>Contact Me</h5>
+                    <hr>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="javascript:void(0);" class="text-decoration-none text-reset">
+                                <i class="fas fa-map-marker-alt fa-fw me-2"></i>Yangon, Myanmar
+                            </a>
+                        </li>
+                        <li>
+                            <a href="tel:+959257830194" class="text-decoration-none text-reset">
+                                <i class="fas fa-phone-alt fa-fw me-2"></i>+959 257 830 194
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:linlinkyaw388@gmail.com" class="text-decoration-none text-reset">
+                                <i class="fas fa-envelope fa-fw me-2"></i>linlinkyaw388@gmail.com
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/in/lin-lin-kyaw-louis-6ba216374/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B7cmfscPiTFOgbwV1ZJ676w%3D%3D" target="_blank" class="text-decoration-none text-reset">
+                                <i class="fab fa-linkedin fa-fw me-2"></i>LinkedIn Profile
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/linlinkyaw388" target="_blank" class="text-decoration-none text-reset">
+                                <i class="fab fa-github fa-fw me-2"></i>GitHub Repository
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+         </section>
+         <!-- end content area  -->
+
+        
+        <!-- start footer area -->
+         <footer class="footers">
+            <div class="container-fluid" style="background-color: #555;padding: 20px;color: #fff;">
+                <div class="text-center mt-3">
+                    <p>&copy; <span id="getyear">2002</span> Copyright.Powered by Louis. All rights Reserved.</p>
+                </div>
+            </div>
+         </footer>
+         <!-- end footer area -->
+
+
+
+         
+
+        <!-- bootstrap js (href မဟုတ်ဘဲ src သုံးရပါမယ်) -->
+        <script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
+
+        <script>
+            const menuToggle = document.getElementById('menu-toggle');
+            const sidebar = document.getElementById('navbars');
+
+            menuToggle.addEventListener('click', () => {
+                sidebar.classList.toggle('active');
+                
+                // Button icon ကို ပြောင်းချင်ရင် (optional)
+                const icon = menuToggle.querySelector('i');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            });
+
+            const getyear = document.getElementById('getyear');
+            const getfullyear = new Date().getFullYear();
+            getyear.textContent = getfullyear;
+
+
+        </script>
+
+    </body>
+</html>
+
+                                    <!-- <div>
+                                        <ul class="list-unstyled">
+                                            <li><i class="fas fa-map-marker-alt me-1"></i>Yangon,Myanmar</li>
+                                            <li><i class="fas fa-map-marker-alt me-1"></i>linlinkyaw388@gmail.com</li>
+                                            <li><i class="fas fa-map-marker-alt me-1"></i>+959257830194</li>
+                                            <li><i class="fas fa-link me-1"></i>My Github Repository Link : </li>
+                                        </ul>
+                                    </div> -->
+
+                                    <!-- .liststyles ul li{
+                                        background-color: aliceblue;
+                                        display: inline;
+                                        padding: 10px;
+                                        border-radius: 20px 20px;
+
+                                        /* column-count: 2;
+                                        grid-column: 5;
+                                        grid-row: auto;
+                                        column-gap: 5;
+                                        grid-template-columns: 5px; */
+                                        /* flex-direction: column;
+                                        flex-shrink: 2;
+                                        flex-grow: 2 */
+
+                                    } -->
+<!-- 
+                                    .liststyles ul {
+                                        display: grid;          /* Flexbox သုံးမယ် */
+                                        flex-wrap: wrap;        /*အတန်းကျော်ရင် အောက်ဆင်းမယ် */ 
+                                        gap: 10px;              /* အတုံးလေးတွေကြား အကွာအဝေး */
+                                        padding: 0;
+                                        list-style: none;
+
+                                        justify-content: center;
+                                        align-items: center;
+
+                                        grid-template-columns: repeat(5, 1fr);
+                                    }
+
+                                    .liststyles ul li {
+                                        background-color: aliceblue;
+                                        padding: 10px;     /* အချိုးအစားညီအောင် padding ပြင်ထားပါတယ် */
+                                        border-radius: 20px;
+                                        /* flex: 0 0 calc(20% - 10px); တစ်တန်းမှာ ၅ တုံး အတိအကျဖြစ်အောင် တွက်ချက်ခြင်း */
+                                        text-align: center;
+                                        border: 1px solid #d1e3f8; /* ပိုလှအောင် border လေးထည့်ထားပါတယ် */
+                                    } -->
+
+                                                                <!-- .liststyles ul {
+                                            display: grid;
+                                            /* Browser အကြီးမှာ တစ်တန်းကို ၅ ခု */
+                                            grid-template-columns: repeat(5, 150px); /* အတုံးလေးတွေကို width ၁၀၀ လောက်ပဲ ပေးထားမယ် */
+                                            gap: 15px;
+                                            padding: 0;
+                                            list-style: none;
+                                            
+                                            /* ဒီအပိုင်းက အလယ်ကို ပို့ပေးတာပါ */
+                                            justify-content: center; 
+                                            margin: 0 auto;
+                                            max-width: 800px; /* စုစုပေါင်း အကျယ်ကို ကန့်သတ်တာပါ */
+                                        }
+
+                                        .liststyles ul li {
+                                            background-color: aliceblue;
+                                            padding: 15px;
+                                            border-radius: 20px;
+                                            text-align: center;
+                                            border: 1px solid #d1e3f8;
+                                            /* font-size: 13px; */
+                                            /* font-weight: 500; */
+                                            /* စာသားရှည်ရင်လည်း အတုံးထဲမှာပဲ ရှိနေအောင် လုပ်တာပါ */
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                        }
+
+                                        /* Tablet - တစ်တန်း ၃ ခု */
+                                        @media (max-width: 768px) {
+                                            .liststyles ul {
+                                                grid-template-columns: repeat(3, 100px);
+                                            }
+                                        }
+
+                                        /* Mobile - တစ်တန်း ၂ ခု */
+                                        @media (max-width: 480px) {
+                                            .liststyles ul {
+                                                grid-template-columns: repeat(2, 100px);
+                                            }
+                                        } -->
+
+<!-- 
+                                         <nav class="navbar navbar-expand-lg bg-secondary">
+
+                                            <div class="container-fluid">
+                                                Links -->
+                                                <!-- <ul class="navbar-nav">
+                                                <li class="nav-bar nav-item">
+                                                    <a class="nav-link" href="#">Link 1</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="#">Link 2</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="#">Link 3</a>
+                                                </li>
+                                                </ul>
+                                            </div>
+
+                                        </nav> -->
+<!--  -->
